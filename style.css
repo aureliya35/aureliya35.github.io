@@ -1,9 +1,61 @@
-body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
-.container { max-width: 650px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-h1, h2 { text-align: center; margin-bottom: 20px; }
-label { margin-top: 10px; font-weight: bold; display: block; }
-input, textarea, select { margin-top: 5px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-button { padding: 10px; margin-top: 20px; border: none; background: #333; color: #fff; cursor: pointer; border-radius: 4px; font-size: 16px; }
-.payment-section { margin-top: 25px; }
-#paypal-button-container, #card-element { margin-top: 20px; }
-footer { text-align: center; font-size: 14px; margin-top: 25px; color: #555; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+header {
+  background-color: #4a3b75;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+nav ul li {
+  margin: 0 15px;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+}
+section.content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+section.content h2 {
+  color: #4a3b75;
+  margin-top: 40px;
+}
+section.content p, section.content ul {
+  font-size: 1.05em;
+  margin-top: 10px;
+}
+section.content ul {
+  padding-left: 20px;
+}
+section.content img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 20px 0;
+}
+footer {
+  background-color: #eee;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 50px;
+  font-size: 0.9em;
+}
