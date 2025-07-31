@@ -23,8 +23,15 @@
     </nav>
   </header>
   <main>
-    <!-- Content within the .dashboard container is hidden by default until the password is entered -->
-    <div class="dashboard">
+    <!-- Login prompt for the owner dashboard. The dashboard itself remains hidden until a correct password is provided. -->
+    <div id="loginContainer" class="login-container" style="max-width:500px; margin:40px auto; text-align:center;">
+      <h2>Owner Login</h2>
+      <p>Please enter the owner password to access the dashboard.</p>
+      <input type="password" id="dashboardPassword" placeholder="Password" style="width:100%; padding:10px; margin-top:10px; margin-bottom:20px; border:1px solid #ccc; border-radius:4px;" />
+      <button id="loginBtn" class="btn-submit" type="button" style="width:100%;">Enter Dashboard</button>
+    </div>
+    <!-- The dashboard container is hidden by default; it will be displayed upon successful authentication -->
+    <div class="dashboard" style="display:none;">
       <div class="dashboard-container">
         <h1>Owner Dashboard</h1>
         <div class="stat-cards">

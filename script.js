@@ -199,7 +199,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (paymentForm) handlePaymentSubmission(paymentForm);
   // Dashboard password protection
   const dashboard = document.querySelector('.dashboard');
-  if (dashboard) requestDashboardAccess(dashboard);
+  const loginBtn = document.getElementById('loginBtn');
+  // Use a visible login form instead of a browser prompt. When the correct password is entered,
+  // hide the login container and reveal the dashboard. The password is hard‑coded for now.
+  if (dashboard && loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      const pwInput = document.getElementById('dashboardPassword');
+      const pw = pwInput ? pwInput.value.trim() : '';
+      if (pw === 'aureliya2025') {
+        const loginContainer = document.getElementById('loginContainer');
+        if (loginContainer) loginContainer.style.display = 'none';
+        dashboard.style.display = 'block';
+        populateDeposits();
+      } else {
+        alert('Incorrect password.');
+        if (pwInput) pwInput.value = '';
+      }
+    });
+  }
   // Attach withdrawal handler if present (owner dashboard)
   const withdrawBtn = document.getElementById('withdrawBtn');
   if (withdrawBtn) {
