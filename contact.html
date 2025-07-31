@@ -3,98 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aureliya Holdings – Contact</title>
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
-  <link rel="stylesheet" href="style.css">
+  <title>Contact – Aureliya Holdings</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="container">
-    <a href="index.html" class="logo">Aureliya</a>
-    <ul>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </nav>
-
-  <section class="container">
-    <h2 class="section-title">Contact Us</h2>
-    <p>Let’s start planning your dream event.  Please provide as many details
+  <header>
+    <nav>
+      <div class="logo">Aureliya</div>
+      <div class="menu-toggle">☰</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1 style="text-align:center; margin-top:20px;">Contact Us</h1>
+    <p style="max-width:700px; margin:20px auto; text-align:center; color:#555;">
+      Let’s start planning your dream event. Please provide as many details
       as possible so our AI can craft a proposal tailored to your needs.</p>
-    <form id="contactForm">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="First Last" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="(+1) 555‑555‑5555" required>
-      </div>
-      <div class="form-group">
-        <label for="eventType">Event Type</label>
-        <select id="eventType" name="eventType" required>
-          <option value="">Select…</option>
-          <option value="Wedding">Wedding</option>
-          <option value="Corporate Gala">Corporate Gala</option>
-          <option value="Birthday">Birthday</option>
-          <option value="VIP Experience">VIP Experience</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="budget">Estimated Budget (USD)</label>
-        <input type="number" id="budget" name="budget" placeholder="e.g. 35000" required>
-      </div>
-      <div class="form-group">
-        <label for="date">Preferred Date</label>
-        <input type="date" id="date" name="date" required>
-      </div>
-      <div class="form-group">
-        <label for="guestsCount">Number of Guests</label>
-        <input type="number" id="guestsCount" name="guestsCount" min="1" placeholder="e.g. 200" required>
-      </div>
-      <div class="form-group">
-        <label for="details">Tell Us About Your Event</label>
-        <textarea id="details" name="details" placeholder="Share your vision, theme, and any special requirements…"></textarea>
-      </div>
-      <button type="submit" class="btn">Send Inquiry</button>
-    </form>
-
-    <!-- Payment section -->
-    <section class="payment-section">
-      <h2>Secure Deposit</h2>
-      <p>Ready to reserve your date? Pay a refundable deposit securely. We accept all major credit cards and digital wallets.</p>
-      <form id="paymentForm">
+    <div class="form-section">
+      <form id="contactForm">
         <div class="form-group">
-          <label for="paymentAmount">Deposit Amount (USD)</label>
-          <!-- Pre-set deposit value; clients can adjust if needed -->
-          <input type="number" id="paymentAmount" name="paymentAmount" min="100" step="50" value="500" required>
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
         </div>
         <div class="form-group">
-          <label for="paymentMethod">Payment Method</label>
-          <select id="paymentMethod" name="paymentMethod" required>
-            <option value="stripe">Credit Card (Stripe)</option>
-            <option value="paypal">PayPal</option>
-            <option value="wallet">Digital Wallet (Apple Pay/Google Pay)</option>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Optional" />
+        </div>
+        <div class="form-group">
+          <label for="eventTypeContact">Event Type</label>
+          <select id="eventTypeContact" name="eventType" required>
+            <option value="" disabled selected>Select…</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Corporate Gala">Corporate Gala</option>
+            <option value="Birthday">Birthday</option>
+            <option value="VIP Experience">VIP Experience</option>
+            <option value="Other">Other</option>
           </select>
         </div>
-        <button type="submit" class="btn">Pay Deposit</button>
+        <div class="form-group">
+          <label for="budgetContact">Estimated Budget (USD)</label>
+          <input type="number" id="budgetContact" name="budget" placeholder="Your budget" />
+        </div>
+        <div class="form-group">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" name="date" />
+        </div>
+        <div class="form-group">
+          <label for="guestsContact">Number of Guests</label>
+          <input type="number" id="guestsContact" name="guests" placeholder="Number of guests" />
+        </div>
+        <div class="form-group">
+          <label for="detailsContact">Tell Us About Your Event</label>
+          <textarea id="detailsContact" name="details" rows="5" placeholder="Describe your vision…"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Inquiry</button>
       </form>
+    </div>
+    <section style="margin-top:60px;">
+      <h2>Secure Deposit</h2>
+      <p>Ready to reserve your date? Pay a refundable deposit securely. We
+        accept all major credit cards and digital wallets.</p>
+      <div class="form-section">
+        <form id="paymentForm">
+          <div class="form-group">
+            <label for="paymentAmount">Deposit Amount (USD)</label>
+            <input type="number" id="paymentAmount" name="paymentAmount" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+              <option value="stripe">Credit Card (Stripe)</option>
+              <option value="paypal">PayPal</option>
+              <option value="wallet">Digital Wallet (Apple Pay/Google Pay)</option>
+              <option value="bank">Bank Transfer</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-submit">Pay Deposit</button>
+        </form>
+      </div>
     </section>
-  </section>
-
-  <!-- Footer -->
+  </main>
   <footer>
     © 2025 Aureliya Holdings. All rights reserved.
   </footer>
-
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
 </body>

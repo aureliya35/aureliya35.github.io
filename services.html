@@ -4,128 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aureliya Holdings – Services</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="container">
-    <a href="index.html" class="logo">Aureliya</a>
-    <ul>
-      <li><a href="services.html" class="active">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </nav>
-  
-  <section class="container">
-    <h2 class="section-title">Our Services</h2>
-    <p>Whether you’re planning an intimate dinner or a grand soirée, Aureliya Holdings
-      delivers exceptional experiences.  Our AI‑driven approach streamlines
-      planning and elevates each event.  Explore what we can do for you.</p>
-    <div class="services-grid">
-      <div class="service-card">
+  <header>
+    <nav>
+      <div class="logo">Aureliya</div>
+      <div class="menu-toggle">☰</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1 style="text-align:center; margin-top:20px;">Our Services</h1>
+    <section class="card-grid">
+      <div class="card">
         <h3>Event Planning</h3>
-        <p>Full‑service planning for weddings, corporate galas and private parties.
-          We handle venue selection, vendor coordination and logistics with
-          minimal fuss.</p>
+        <p>Full‑service planning for weddings, corporate galas and private
+          parties. We handle venue selection, vendor coordination and
+          logistics with minimal fuss.</p>
       </div>
-      <div class="service-card">
+      <div class="card">
         <h3>VIP Concierge</h3>
         <p>From travel arrangements to on‑site personal assistants, our VIP
-          concierge service ensures a seamless, luxurious experience for you and
-          your guests.</p>
+          concierge service ensures a seamless, luxurious experience for
+          you and your guests.</p>
       </div>
-      <div class="service-card">
+      <div class="card">
         <h3>PR Pop‑Ups</h3>
-        <p>Launch your brand or project with eye‑catching pop‑ups and publicity
-          events.  We work behind the scenes to create buzz and leave a lasting
-          impression.</p>
+        <p>Launch your brand or project with eye‑catching pop‑ups and
+          publicity events. We work behind the scenes to create buzz and
+          leave a lasting impression.</p>
       </div>
-      <div class="service-card">
-        <h3>Automation Tiers</h3>
-        <p>Our proprietary AI engine operates at six levels—from basic task
-          automation to advanced lead targeting.  Choose a tier that suits your
-          needs and let the system do the work.</p>
+    </section>
+    <section style="margin-top:50px;">
+      <h2>Automation Tiers</h2>
+      <p>Our proprietary AI engine operates at six levels—from basic
+        confirmations to advanced analytics. Choose a tier that suits
+        your needs and let the system do the work:</p>
+      <ul style="max-width:700px; margin:20px auto; list-style:disc;">
+        <li><strong>Level 1:</strong> Automates confirmations and reminders. Perfect for managing RSVPs and follow‑ups.</li>
+        <li><strong>Level 2:</strong> Optimises workflows and tracks leads. Identifies VIP clients based on budget and guest counts.</li>
+        <li><strong>Level 3:</strong> Understands client preferences and goals and recommends personalised options.</li>
+        <li><strong>Level 4:</strong> Generates custom strategies and proposals tailored to each client.</li>
+        <li><strong>Level 5:</strong> Operates autonomous marketing and outreach campaigns on event boards and forums.</li>
+        <li><strong>Level 6:</strong> Employs advanced analytics to discover new leads and anticipate trends.</li>
+      </ul>
+    </section>
+    <section style="margin-top:60px;">
+      <h2>Book a Consultation</h2>
+      <p>If you’re interested in planning an event with us, fill out the
+        form below and our team will reach out with a personalised proposal.</p>
+      <div class="form-section">
+        <form id="servicesForm">
+          <div class="form-group">
+            <label for="eventType">Event Type</label>
+            <select id="eventType" name="eventType" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="Wedding">Wedding</option>
+              <option value="Corporate Gala">Corporate Gala</option>
+              <option value="Birthday">Birthday</option>
+              <option value="VIP Experience">VIP Experience</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">Budget (USD)</label>
+            <input type="number" id="budget" name="budget" placeholder="Estimated budget" />
+          </div>
+          <div class="form-group">
+            <label for="eventDate">Event Date</label>
+            <input type="date" id="eventDate" name="eventDate" />
+          </div>
+          <div class="form-group">
+            <label for="guests">Number of Guests</label>
+            <input type="number" id="guests" name="guests" placeholder="Number of guests" />
+          </div>
+          <div class="form-group">
+            <label for="details">Additional Details</label>
+            <textarea id="details" name="details" rows="5" placeholder="Tell us about your vision…"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Submit Inquiry</button>
+        </form>
       </div>
-    </div>
-  </section>
-  
-  <section class="container">
-    <h2 class="section-title">AI Levels Explained</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Level 1</h3>
-        <p>Automates confirmations and reminders.  Perfect for managing RSVPs
-          and follow‑ups.</p>
-      </div>
-      <div class="service-card">
-        <h3>Level 2</h3>
-        <p>Optimises workflows and tracks leads.  Identifies VIP clients based
-          on budget and guest counts.</p>
-      </div>
-      <div class="service-card">
-        <h3>Level 3</h3>
-        <p>Understands client preferences and goals.  Recommends personalised
-          options.</p>
-      </div>
-      <div class="service-card">
-        <h3>Level 4</h3>
-        <p>Generates custom strategies and proposals tailored to each client.</p>
-      </div>
-      <div class="service-card">
-        <h3>Level 5</h3>
-        <p>Operates autonomous marketing and outreach campaigns on event boards
-          and forums.</p>
-      </div>
-      <div class="service-card">
-        <h3>Level 6</h3>
-        <p>Employs advanced analytics to discover new leads and anticipate
-          trends.</p>
-      </div>
-    </div>
-  </section>
-  
-  <section class="container">
-    <h2 class="section-title">Book a Consultation</h2>
-    <form id="servicesForm">
-      <div class="form-group">
-        <label for="eventType">Event Type</label>
-        <select id="eventType" name="eventType" required>
-          <option value="">Select…</option>
-          <option value="Wedding">Wedding</option>
-          <option value="Corporate Gala">Corporate Gala</option>
-          <option value="Birthday">Birthday</option>
-          <option value="VIP Experience">VIP Experience</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="budget">Budget (USD)</label>
-        <input type="number" id="budget" name="budget" min="0" placeholder="e.g. 20000" required>
-      </div>
-      <div class="form-group">
-        <label for="date">Event Date</label>
-        <input type="date" id="date" name="date" required>
-      </div>
-      <div class="form-group">
-        <label for="guests">Number of Guests</label>
-        <input type="number" id="guests" name="guests" min="1" placeholder="e.g. 150" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Additional Details</label>
-        <textarea id="message" name="message" placeholder="Tell us more about your event…"></textarea>
-      </div>
-      <button type="submit" class="btn">Submit Inquiry</button>
-    </form>
-  </section>
-  
-  <!-- Footer -->
+    </section>
+  </main>
   <footer>
     © 2025 Aureliya Holdings. All rights reserved.
   </footer>
-
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
 </body>

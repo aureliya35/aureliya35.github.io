@@ -3,40 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aureliya Holdings – Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Portfolio – Aureliya Holdings</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="container">
-    <a href="index.html" class="logo">Aureliya</a>
-    <ul>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html" class="active">Portfolio</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </nav>
-
-  <section class="container">
-    <h2 class="section-title">Our Portfolio</h2>
-    <p>The following gallery showcases examples of the types of events we
-      curate.  Each image is AI‑generated as a concept placeholder; replace
-      these files with your own photos to highlight real experiences.  A
-      minimalist presentation emphasises each visual.</p>
-    <div class="portfolio-grid">
-      <div class="portfolio-item"><img src="assets/portfolio1.png" alt="Elegant wedding table setting"></div>
-      <div class="portfolio-item"><img src="assets/portfolio2.png" alt="Stylish cocktail reception"></div>
-      <div class="portfolio-item"><img src="assets/portfolio3.png" alt="Outdoor wedding ceremony"></div>
+  <header>
+    <nav>
+      <div class="logo">Aureliya</div>
+      <div class="menu-toggle">☰</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1 style="text-align:center; margin-top:20px;">Our Portfolio</h1>
+    <p style="max-width:700px; margin:20px auto; text-align:center; color:#555;">
+      The gallery below showcases examples of the types of events we curate.
+      Replace these placeholders with your own photography to highlight real
+      experiences and inspire your clients.</p>
+    <div class="card-grid">
+      <div class="card" style="text-align:center;">
+        <div style="height:180px; background-color:#eaeaff; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#4a4aff; font-weight:600; margin-bottom:15px;">Image 1</div>
+        <h3>Luxury Wedding</h3>
+        <p>An elegant ceremony on the waterfront with bespoke floral
+          arrangements and live entertainment.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="height:180px; background-color:#eaeaff; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#4a4aff; font-weight:600; margin-bottom:15px;">Image 2</div>
+        <h3>Corporate Gala</h3>
+        <p>A sophisticated corporate celebration at a city landmark,
+          featuring gourmet dining and interactive installations.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="height:180px; background-color:#eaeaff; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#4a4aff; font-weight:600; margin-bottom:15px;">Image 3</div>
+        <h3>VIP Birthday</h3>
+        <p>An intimate birthday soirée held at a private estate, with live
+          musicians and custom décor.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="height:180px; background-color:#eaeaff; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#4a4aff; font-weight:600; margin-bottom:15px;">Image 4</div>
+        <h3>Brand Pop‑Up</h3>
+        <p>A creative pop‑up activation showcasing new products and engaging
+          experiences for influencers and media.</p>
+      </div>
     </div>
-  </section>
-  
-  <!-- Footer -->
+  </main>
   <footer>
     © 2025 Aureliya Holdings. All rights reserved.
   </footer>
-
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
 </body>
