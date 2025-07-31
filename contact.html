@@ -27,6 +27,7 @@
       Let’s start planning your dream event. Please provide as many details
       as possible so our AI can craft a proposal tailored to your needs.</p>
     <div class="form-section">
+      <!-- Unified contact and deposit form. Clients enter their details and deposit information in one form and submit once. -->
       <form id="contactForm">
         <div class="form-group">
           <label for="name">Your Name</label>
@@ -67,12 +68,9 @@
           <label for="detailsContact">Tell Us About Your Event</label>
           <textarea id="detailsContact" name="details" rows="5" placeholder="Describe your vision…"></textarea>
         </div>
-        <button type="submit" class="btn-submit">Send Inquiry</button>
-      </form>
-      <!-- Deposit subsection inside the same section as the inquiry form -->
-      <h2 style="margin-top:40px;">Secure Deposit</h2>
-      <p>Ready to reserve your date? Pay a refundable deposit securely. We accept all major credit cards and digital wallets.</p>
-      <form id="paymentForm">
+        <!-- Deposit fields integrated into the same form -->
+        <h2 style="margin-top:40px;">Secure Deposit</h2>
+        <p>Ready to reserve your date? Pay a refundable deposit securely. We accept all major credit cards and digital wallets.</p>
         <div class="form-group">
           <label for="paymentAmount">Deposit Amount (USD)</label>
           <input type="number" id="paymentAmount" name="paymentAmount" min="1" required />
@@ -86,7 +84,7 @@
             <option value="bank">Bank Transfer</option>
           </select>
         </div>
-        <button type="submit" class="btn-submit">Pay Deposit</button>
+        <button type="submit" class="btn-submit">Submit Inquiry & Deposit</button>
       </form>
     </div>
   </main>

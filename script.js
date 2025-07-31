@@ -11,20 +11,53 @@
   dashboard from casual visitors.
 */
 
-// Handle generic form submissions (services and contact forms)
+// Handle generic form submissions (services and contact forms).
+// When deposit fields are present on the contact form they are processed here as
+// part of the same submission so clients only need to click a single button.
 function handleFormSubmission(form) {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     console.log('Form submitted:', data);
-    // Basic AI automation levels (if AI engine is present)
+    // Run basic AI automation for the inquiry
     if (window.AIEngine) {
       AIEngine.level1_basicAutomation(data);
       AIEngine.level2_leadTracking(data);
       AIEngine.level3_clientUnderstanding(data);
     }
-    alert('Thank you for reaching out! Our team will respond shortly.');
+    // If deposit details are provided, process the payment in the same step
+    const amountRaw = formData.get('paymentAmount');
+    const method = formData.get('paymentMethod');
+    if (amountRaw && method) {
+      const amount = parseFloat(amountRaw) || 0;
+      // Push deposit data into localStorage so the owner dashboard can display it
+      try {
+        const deposits = JSON.parse(localStorage.getItem('deposits')) || [];
+        deposits.push({ amount: amount, method: method, timestamp: Date.now() });
+        localStorage.setItem('deposits', JSON.stringify(deposits));
+      } catch (e) {
+        console.error('Unable to save deposit data', e);
+      }
+      // Let the AI engine respond to the deposit
+      if (window.AIEngine) {
+        const depositData = { depositAmount: amount, paymentMethod: method };
+        AIEngine.level1_basicAutomation(depositData);
+        AIEngine.level2_leadTracking(depositData);
+        AIEngine.level3_clientUnderstanding(depositData);
+      }
+      const methodNameMap = {
+        stripe: 'credit card via Stripe',
+        paypal: 'PayPal',
+        wallet: 'digital wallet',
+        bank: 'bank transfer'
+      };
+      const methodName = methodNameMap[method] || 'selected method';
+      alert(`Thank you! Your $${amount.toFixed(2)} deposit via ${methodName} has been recorded. Our team will respond shortly.`);
+    } else {
+      // If no payment fields were included, just send a thank you message
+      alert('Thank you for reaching out! Our team will respond shortly.');
+    }
     form.reset();
   });
 }
