@@ -68,8 +68,10 @@
   </section>
     <div class="form-section">
       <!-- Unified contact and deposit form. Clients enter their details and deposit information in one form and submit once. -->
-      <form id="contactForm" onsubmit="return false;">
-        <div class="form-group">
+<form id="contactForm" action="https://formspree.io/f/xyzdggln" method="POST">
+       <input type="hidden" name="_subject" value="Inquiry from Contact Page (Auréliya Holdings)">
+  <input type="text" name="_gotcha" style="display:none">
+  <div class="form-group">
           <label for="name">Your Name</label>
           <input type="text" id="name" name="name" placeholder="Your full name" required />
         </div>
@@ -122,11 +124,7 @@
             <option value="paypal">PayPal</option>
             <option value="wallet">Digital Wallet (Apple Pay/Google Pay)</option>
             <option value="bank">Bank Transfer</option>
-          </select>
-        </div>
-        <a class="btn-submit"
-   href="mailto:aureliya@aureliyaholdings.com?subject=Inquiry%20from%20Contact%20Page&body=Hi%20Aur%C3%A9liya%20Holdings%2C%0A%0AMy%20name%3A%20%0AMy%20phone%3A%20%0AEvent%20date%3A%20%0AEvent%20type%3A%20%0ABudget%20range%3A%20%0AAdditional%20details%3A%20">
-  Submit Inquiry
+  <button type="submit" class="btn-submit">Submit Inquiry</button>       
 </a>
       </form>
     </div>
@@ -136,5 +134,51 @@
   </footer>
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
+  <script>
+  (function () {
+    const form = document.getElementById('contactForm');
+
+    // Links
+    const STRIPE_LINK   = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
+    const PAYPAL_LINK   = '';                    // optional
+    const BANK_INFO_URL = '/bank-transfer.html'; // optional
+    const BOOKING_LINK  = '';                    // optional
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // 1) Send to Formspree (you’ll receive an email)
+      const data = new FormData(form);
+      const endpoint = form.action || 'https://formspree.io/f/xyzdggln';
+      try {
+        await fetch(endpoint, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+      } catch (err) {
+        console.error('Form submit failed:', err);
+        // You can show a message here if desired
+      }
+
+      // 2) Redirect user to payment (or booking)
+      const method = (form.paymentMethod && form.paymentMethod.value) || 'stripe';
+
+      if (method === 'stripe' || method === 'wallet') {
+        window.location.href = STRIPE_LINK;
+      } else if (method === 'paypal' && PAYPAL_LINK) {
+        window.location.href = PAYPAL_LINK;
+      } else if (method === 'bank' && BANK_INFO_URL) {
+        window.location.href = BANK_INFO_URL;
+      } else if (BOOKING_LINK) {
+        window.location.href = BOOKING_LINK;
+      } else {
+        // Fallback to Stripe
+        window.location.href = STRIPE_LINK;
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
