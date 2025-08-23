@@ -118,15 +118,15 @@
           <input type="number" id="paymentAmount" name="paymentAmount" min="1" required />
         </div>
         <div class="form-group">
-          <label for="paymentMethod">Payment Method</label>
-          <select id="paymentMethod" name="paymentMethod" required>
-            <option value="stripe">Credit Card (Stripe)</option>
-            <option value="paypal">PayPal</option>
-            <option value="wallet">Digital Wallet (Apple Pay/Google Pay)</option>
-            <option value="bank">Bank Transfer</option>
-  <button type="submit" class="btn-submit">Submit Inquiry</button>       
-</a>
-      </form>
+          <div class="form-group">
+  <label for="paymentMethod">Payment Method</label>
+  <select id="paymentMethod" name="paymentMethod" required>
+    <option value="stripe">Credit Card (Stripe)</option>
+    <option value="paypal">PayPal</option>
+  </select>
+</div>
+
+<button type="submit" class="btn-submit">Submit Inquiry</button>
     </div>
   </main>
   <footer>
@@ -141,9 +141,6 @@
     // Links
     const STRIPE_LINK   = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
     const PAYPAL_LINK   = '';                    // optional
-    const BANK_INFO_URL = '/bank-transfer.html'; // optional
-    const BOOKING_LINK  = '';                    // optional
-
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -168,11 +165,6 @@
         window.location.href = STRIPE_LINK;
       } else if (method === 'paypal' && PAYPAL_LINK) {
         window.location.href = PAYPAL_LINK;
-      } else if (method === 'bank' && BANK_INFO_URL) {
-        window.location.href = BANK_INFO_URL;
-      } else if (BOOKING_LINK) {
-        window.location.href = BOOKING_LINK;
-      } else {
         // Fallback to Stripe
         window.location.href = STRIPE_LINK;
       }
