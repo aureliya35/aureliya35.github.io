@@ -100,6 +100,35 @@
   <footer>
     © 2025 Aureliya Holdings. All rights reserved.
   </footer>
+  <script>
+  (function () {
+    const form = document.getElementById('servicesForm');
+    const success = document.getElementById('servicesSuccess');
+    const btn = form.querySelector('.btn-submit');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+
+      try {
+        await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        form.reset();
+        if (success) success.style.display = 'block';
+      } catch (err) {
+        console.error('Form submit failed:', err);
+        alert('There was a problem sending your inquiry. Please try again.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Submit Inquiry';
+      }
+    });
+  })();
+</script>
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
 </body>
