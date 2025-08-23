@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact – Aureliya Holdings</title>
+  <title>Contact – Aureliya Holdings</title>
   <link rel="stylesheet" href="styles.css">
-<!-- Organization JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Auréliya Holdings",
-  "email": "aureliya@aureliyaholdings.com",
-  "telephone": "+1-508-319-1542",
-  "url": "https://www.aureliyaholdings.com/",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "145 Tremont Street, Suite 1470",
-    "addressLocality": "Boston",
-    "addressRegion": "MA",
-    "postalCode": "02111",
-    "addressCountry": "US"
+
+  <!-- Organization JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Auréliya Holdings",
+    "email": "aureliya@aureliyaholdings.com",
+    "telephone": "+1-508-319-1542",
+    "url": "https://www.aureliyaholdings.com/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "145 Tremont Street, Suite 1470",
+      "addressLocality": "Boston",
+      "addressRegion": "MA",
+      "postalCode": "02111",
+      "addressCountry": "US"
+    }
   }
-}
-</script>
+  </script>
 </head>
 <body>
   <header>
@@ -40,49 +41,54 @@
       </ul>
     </nav>
   </header>
+
   <main>
     <h1 style="text-align:center; margin-top:20px;">Contact Us</h1>
     <p style="max-width:700px; margin:20px auto; text-align:center; color:#555;">
       Let’s start planning your dream event. Please provide as many details
-      as possible so our AI can craft a proposal tailored to your needs.</p>
-      <!-- Company contact block -->
-  <section id="company-contact" class="contact-block" style="max-width:700px;margin:24px auto;">
-    <h2>Contact Auréliya Holdings</h2>
-    <address>
-      <strong>Auréliya Holdings</strong><br>
-      145 Tremont Street<br>
-      Suite 1470<br>
-      Boston, MA 02111<br>
-      United States
-    </address>
-
-    <p>Email: <a href="mailto:aureliya@aureliyaholdings.com">aureliya@aureliyaholdings.com</a><br>
-    Phone: <a href="tel:+15083191542">(508) 319-1542</a></p>
-
-    <p>
-      <a class="btn btn-primary"
-         href="mailto:aureliya@aureliyaholdings.com?subject=Inquiry%20from%20Contact%20Page&body=Hi%20Aur%C3%A9liya%20Holdings%2C%0A%0AMy%20name%3A%20%0AMy%20phone%3A%20%0AEvent%20date%3A%20%0AEvent%20type%3A%20%0ABudget%20range%3A%20%0AAdditional%20details%3A%20">
-        Email Us
-      </a>
+      as possible so our AI can craft a proposal tailored to your needs.
     </p>
-  </section>
+
+    <!-- Company contact block -->
+    <section id="company-contact" class="contact-block" style="max-width:700px;margin:24px auto;">
+      <h2>Contact Auréliya Holdings</h2>
+      <address>
+        <strong>Auréliya Holdings</strong><br>
+        145 Tremont Street<br>
+        Suite 1470<br>
+        Boston, MA 02111<br>
+        United States
+      </address>
+
+      <p>
+        Email:
+        <a href="mailto:aureliya@aureliyaholdings.com">aureliya@aureliyaholdings.com</a><br>
+        Phone:
+        <a href="tel:+15083191542">(508) 319-1542</a>
+      </p>
+    </section>
+
     <div class="form-section">
-      <!-- Unified contact and deposit form. Clients enter their details and deposit information in one form and submit once. -->
-<form id="contactForm" action="https://formspree.io/f/xyzdggln" method="POST">
-       <input type="hidden" name="_subject" value="Inquiry from Contact Page (Auréliya Holdings)">
-  <input type="text" name="_gotcha" style="display:none">
-  <div class="form-group">
+      <!-- Unified contact and deposit form -->
+      <form id="contactForm" action="https://formspree.io/f/xyzdggln" method="POST">
+        <input type="hidden" name="_subject" value="Inquiry from Contact Page (Auréliya Holdings)">
+        <input type="text" name="_gotcha" style="display:none">
+
+        <div class="form-group">
           <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required />
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
         </div>
+
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
         </div>
+
         <div class="form-group">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Optional" />
+          <input type="tel" id="phone" name="phone" placeholder="Optional">
         </div>
+
         <div class="form-group">
           <label for="eventTypeContact">Event Type</label>
           <select id="eventTypeContact" name="eventType" required>
@@ -94,83 +100,90 @@
             <option value="Other">Other</option>
           </select>
         </div>
+
         <div class="form-group">
           <label for="budgetContact">Estimated Budget (USD)</label>
-          <input type="number" id="budgetContact" name="budget" placeholder="Your budget" />
+          <input type="number" id="budgetContact" name="budget" placeholder="Your budget">
         </div>
+
         <div class="form-group">
           <label for="date">Preferred Date</label>
-          <input type="date" id="date" name="date" />
+          <input type="date" id="date" name="date">
         </div>
+
         <div class="form-group">
           <label for="guestsContact">Number of Guests</label>
-          <input type="number" id="guestsContact" name="guests" placeholder="Number of guests" />
+          <input type="number" id="guestsContact" name="guests" placeholder="Number of guests">
         </div>
+
         <div class="form-group">
           <label for="detailsContact">Tell Us About Your Event</label>
           <textarea id="detailsContact" name="details" rows="5" placeholder="Describe your vision…"></textarea>
         </div>
-        <!-- Deposit fields integrated into the same form -->
+
         <h2 style="margin-top:40px;">Secure Deposit</h2>
         <p>Ready to reserve your date? Pay a refundable deposit securely. We accept all major credit cards and digital wallets.</p>
+
         <div class="form-group">
           <label for="paymentAmount">Deposit Amount (USD)</label>
-          <input type="number" id="paymentAmount" name="paymentAmount" min="1" required />
+          <input type="number" id="paymentAmount" name="paymentAmount" min="1" required>
         </div>
-        <div class="form-group">
-          <div class="form-group">
-  <label for="paymentMethod">Payment Method</label>
-  <select id="paymentMethod" name="paymentMethod" required>
-    <option value="stripe">Credit Card (Stripe)</option>
-    <option value="paypal">PayPal</option>
-  </select>
-</div>
 
-<button type="submit" class="btn-submit">Submit Inquiry</button>
+        <div class="form-group">
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="stripe">Credit Card (Stripe)</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Inquiry</button>
+      </form>
     </div>
   </main>
+
   <footer>
-    © 2025 Aureliya Holdings. All rights reserved.
+    © 2025 Aureliya Holdings. All rights reserved.
   </footer>
+
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
+
+  <!-- Redirect after Formspree submit -->
   <script>
-  (function () {
-    const form = document.getElementById('contactForm');
+    (function () {
+      const form = document.getElementById('contactForm');
 
-    // Links
-    const STRIPE_LINK   = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
-    const PAYPAL_LINK   = '';                    // optional
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
+      const STRIPE_LINK = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
+      const PAYPAL_LINK = ''; // fill if you add PayPal later
 
-      // 1) Send to Formspree (you’ll receive an email)
-      const data = new FormData(form);
-      const endpoint = form.action || 'https://formspree.io/f/xyzdggln';
-      try {
-        await fetch(endpoint, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-      } catch (err) {
-        console.error('Form submit failed:', err);
-        // You can show a message here if desired
-      }
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-      // 2) Redirect user to payment (or booking)
-      const method = (form.paymentMethod && form.paymentMethod.value) || 'stripe';
+        // 1) Send to Formspree (emails you the data)
+        const data = new FormData(form);
+        try {
+          await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+        } catch (err) {
+          console.error('Form submit failed:', err);
+          // Optional: show a message; we still redirect below
+        }
 
-      if (method === 'stripe' || method === 'wallet') {
-        window.location.href = STRIPE_LINK;
-      } else if (method === 'paypal' && PAYPAL_LINK) {
-        window.location.href = PAYPAL_LINK;
-        // Fallback to Stripe
-        window.location.href = STRIPE_LINK;
-      }
-    });
-  })();
-</script>
-
+        // 2) Redirect to payment (with PayPal fallback to Stripe)
+        const method = (form.paymentMethod && form.paymentMethod.value) || 'stripe';
+        if (method === 'stripe') {
+          window.location.href = STRIPE_LINK;
+        } else if (method === 'paypal') {
+          window.location.href = PAYPAL_LINK || STRIPE_LINK;
+        } else {
+          window.location.href = STRIPE_LINK;
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
