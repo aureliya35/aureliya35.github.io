@@ -62,9 +62,7 @@
 
       <p>
         Email:
-        <a href="mailto:aureliya@aureliyaholdings.com">aureliya@aureliyaholdings.com</a><br>
-        Phone:
-        <a href="tel:+15083191542">(508) 319-1542</a>
+        <a href="mailto:aureliya@aureliyaholdings.com">aureliya@aureliyaholdings.com</a>
       </p>
     </section>
 
@@ -133,7 +131,7 @@
           <label for="paymentMethod">Payment Method</label>
           <select id="paymentMethod" name="paymentMethod" required>
             <option value="stripe">Credit Card (Stripe)</option>
-            <option value="paypal">PayPal</option>
+  
           </select>
         </div>
 
@@ -155,7 +153,7 @@
       const form = document.getElementById('contactForm');
 
       const STRIPE_LINK = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
-      const PAYPAL_LINK = ''; // fill if you add PayPal later
+     
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
