@@ -17,12 +17,9 @@
     "url": "https://www.aureliyaholdings.com/",
     "address": {
       "@type": "PostalAddress",
-        "streetAddress": "145 Tremont Street, Suite 201 PMB 1470",
+      "streetAddress": "145 Tremont Street, Suite 201 PMB 1470",
       "addressLocality": "Boston",
-
-        "addressLocality": "Boston",
-
-        "addressRegion": "MA",
+      "addressRegion": "MA",
       "postalCode": "02111 -1318",
       "addressCountry": "US"
     }
@@ -58,14 +55,13 @@
       <address>
         <strong>Auréliya Holdings</strong><br>
         145 Tremont Street<br>
-         Suite 201 PMB 1<470<br>
-        Boston, MA 02111< -1318<br>
+        Suite 201 PMB 1470<br>
+        Boston, MA 02111 -1318<br>
         United States
       </address>
 
       <p>
-   Email:     aureliya@aureliyaholdings.com
-        
+        Email: aureliya@aureliyaholdings.com
       </p>
     </section>
 
@@ -134,7 +130,6 @@
           <label for="paymentMethod">Payment Method</label>
           <select id="paymentMethod" name="paymentMethod" required>
             <option value="stripe">Credit Card (Stripe)</option>
-  
           </select>
         </div>
 
@@ -156,7 +151,6 @@
       const form = document.getElementById('contactForm');
 
       const STRIPE_LINK = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
-     
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
