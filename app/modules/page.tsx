@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import { modules } from '../../lib/modules';
+export default function Modules(){return <main className="shell"><nav className="nav"><Link className="brand" href="/">Vercel by Auréliya</Link><div className="links"><Link className="pill" href="/assistant">Assistant</Link><Link className="pill" href="/files">Files</Link></div></nav><h1>Modules</h1><input className="search" placeholder="Search modules..."/><section className="grid">{modules.map(m=><Link className="card" href={`/modules/${m.id}`} key={m.id}><div className="row"><span className="badge">{m.category}</span><span className="badge">{m.status}</span></div><h3>{m.name}</h3><p className="muted">{m.description}</p></Link>)}</section></main>}
