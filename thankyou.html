@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You – Aureliya Holdings</title>
+  <title>Thank You – Aureliya Holdings</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header>
-    <nav>
+    <nav aria-label="Primary navigation">
       <div class="logo">Aureliya</div>
-      <div class="menu-toggle">☰</div>
-      <ul>
+      <button type="button" class="menu-toggle" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">☰</button>
+      <ul id="primary-navigation">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
@@ -21,19 +22,14 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <h1 style="text-align:center; margin-top:40px;">Thank You!</h1>
-    <p style="max-width:700px; margin:20px auto; text-align:center; color:#555;">
-      Your request and payment have been received. Our team will review your
-      submission and reach out to you soon with a detailed proposal.
-    </p>
-    <div style="text-align:center; margin-top:30px;">
-      <a href="index.html" class="cta">Back to Home</a>
-    </div>
+  <main id="main-content" tabindex="-1">
+    <section aria-labelledby="thankyou-heading" role="status">
+      <h1 id="thankyou-heading" style="text-align:center; margin-top:40px;">Thank You!</h1>
+      <p style="max-width:700px; margin:20px auto; text-align:center; color:#41414a;">Your request and payment have been received. Our team will review your submission and reach out to you soon with a detailed proposal.</p>
+      <div style="text-align:center; margin-top:30px;"><a href="index.html" class="cta">Back to Home</a></div>
+    </section>
   </main>
-  <footer>
-    © 2025 Aureliya Holdings. All rights reserved.
-  </footer>
+  <footer>© 2025 Aureliya Holdings. All rights reserved.</footer>
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
 </body>
