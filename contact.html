@@ -5,177 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact – Aureliya Holdings</title>
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Organization JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Auréliya Holdings",
-    "email": "aureliya@aureliyaholdings.com",
-    "telephone": "+1-508-319-1542",
-    "url": "https://www.aureliyaholdings.com/",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "145 Tremont Street, Suite 201 PMB 1470",
-      "addressLocality": "Boston",
-      "addressRegion": "MA",
-      "postalCode": "02111 -1318",
-      "addressCountry": "US"
-    }
-  }
+  {"@context":"https://schema.org","@type":"Organization","name":"Auréliya Holdings","email":"aureliya@aureliyaholdings.com","telephone":"+1-508-319-1542","url":"https://www.aureliyaholdings.com/","address":{"@type":"PostalAddress","streetAddress":"145 Tremont Street, Suite 201 PMB 1470","addressLocality":"Boston","addressRegion":"MA","postalCode":"02111-1318","addressCountry":"US"}}
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header>
-    <nav>
+    <nav aria-label="Primary navigation">
       <div class="logo">Aureliya</div>
-      <div class="menu-toggle">☰</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+      <button type="button" class="menu-toggle" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">☰</button>
+      <ul id="primary-navigation">
+        <li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
       </ul>
     </nav>
   </header>
-
-  <main>
+  <main id="main-content">
     <h1 style="text-align:center; margin-top:20px;">Contact Us</h1>
-    <p style="max-width:700px; margin:20px auto; text-align:center; color:#555;">
-      Let’s start planning your dream event. Please provide as many details
-      as possible so our AI can craft a proposal tailored to your needs.
-    </p>
-
-    <!-- Company contact block -->
-    <section id="company-contact" class="contact-block" style="max-width:700px;margin:24px auto;">
-      <h2>Contact Auréliya Holdings</h2>
-      <address>
-        <strong>Auréliya Holdings</strong><br>
-        145 Tremont Street<br>
-        Suite 201 PMB 1470<br>
-        Boston, MA 02111 -1318<br>
-        United States
-      </address>
-
-      <p>
-        Email: aureliya@aureliyaholdings.com
-      </p>
+    <p style="max-width:700px; margin:20px auto; text-align:center; color:#41414a;">Let’s start planning your dream event. Please provide as many details as possible so our AI can craft a proposal tailored to your needs.</p>
+    <section id="company-contact" class="contact-block" style="max-width:700px;margin:24px auto;" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact Auréliya Holdings</h2>
+      <address><strong>Auréliya Holdings</strong><br>145 Tremont Street<br>Suite 201 PMB 1470<br>Boston, MA 02111-1318<br>United States</address>
+      <p>Email: <a href="mailto:aureliya@aureliyaholdings.com">aureliya@aureliyaholdings.com</a></p>
     </section>
-
     <div class="form-section">
-      <!-- Unified contact and deposit form -->
       <form id="contactForm" action="https://formspree.io/f/xyzdggln" method="POST">
         <input type="hidden" name="_subject" value="Inquiry from Contact Page (Auréliya Holdings)">
-        <input type="text" name="_gotcha" style="display:none">
-
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Optional">
-        </div>
-
-        <div class="form-group">
-          <label for="eventTypeContact">Event Type</label>
-          <select id="eventTypeContact" name="eventType" required>
-            <option value="" disabled selected>Select…</option>
-            <option value="Wedding">Wedding</option>
-            <option value="Corporate Gala">Corporate Gala</option>
-            <option value="Birthday">Birthday</option>
-            <option value="VIP Experience">VIP Experience</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="budgetContact">Estimated Budget (USD)</label>
-          <input type="number" id="budgetContact" name="budget" placeholder="Your budget">
-        </div>
-
-        <div class="form-group">
-          <label for="date">Preferred Date</label>
-          <input type="date" id="date" name="date">
-        </div>
-
-        <div class="form-group">
-          <label for="guestsContact">Number of Guests</label>
-          <input type="number" id="guestsContact" name="guests" placeholder="Number of guests">
-        </div>
-
-        <div class="form-group">
-          <label for="detailsContact">Tell Us About Your Event</label>
-          <textarea id="detailsContact" name="details" rows="5" placeholder="Describe your vision…"></textarea>
-        </div>
-
+        <div class="sr-only" aria-hidden="true"><label for="contact-company">Leave this field blank</label><input id="contact-company" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+        <p id="required-note">Fields marked required must be completed.</p>
+        <div class="form-group"><label for="name">Your Name <span class="required-indicator">(required)</span></label><input type="text" id="name" name="name" autocomplete="name" required></div>
+        <div class="form-group"><label for="email">Email <span class="required-indicator">(required)</span></label><input type="email" id="email" name="email" autocomplete="email" inputmode="email" required></div>
+        <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
+        <div class="form-group"><label for="eventTypeContact">Event Type <span class="required-indicator">(required)</span></label><select id="eventTypeContact" name="eventType" required><option value="">Select an event type</option><option>Wedding</option><option>Corporate Gala</option><option>Birthday</option><option>VIP Experience</option><option>Other</option></select></div>
+        <div class="form-group"><label for="budgetContact">Estimated Budget (USD)</label><input type="number" id="budgetContact" name="budget" min="0" step="1" inputmode="decimal"></div>
+        <div class="form-group"><label for="date">Preferred Date</label><input type="date" id="date" name="date"></div>
+        <div class="form-group"><label for="guestsContact">Number of Guests</label><input type="number" id="guestsContact" name="guests" min="1" step="1" inputmode="numeric"></div>
+        <div class="form-group"><label for="detailsContact">Tell Us About Your Event</label><textarea id="detailsContact" name="details" rows="5"></textarea></div>
         <h2 style="margin-top:40px;">Secure Deposit</h2>
         <p>Ready to reserve your date? Pay a refundable deposit securely. We accept all major credit cards and digital wallets.</p>
-
-        <div class="form-group">
-          <label for="paymentAmount">Deposit Amount (USD)</label>
-          <input type="number" id="paymentAmount" name="paymentAmount" min="1" required>
-        </div>
-
-        <div class="form-group">
-          <label for="paymentMethod">Payment Method</label>
-          <select id="paymentMethod" name="paymentMethod" required>
-            <option value="stripe">Credit Card (Stripe)</option>
-          </select>
-        </div>
-
+        <div class="form-group"><label for="paymentAmount">Deposit Amount (USD) <span class="required-indicator">(required)</span></label><input type="number" id="paymentAmount" name="paymentAmount" min="1" step="0.01" inputmode="decimal" required></div>
+        <div class="form-group"><label for="paymentMethod">Payment Method <span class="required-indicator">(required)</span></label><select id="paymentMethod" name="paymentMethod" required><option value="stripe">Credit Card (Stripe)</option></select></div>
+        <p id="contactStatus" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
         <button type="submit" class="btn-submit">Submit Inquiry</button>
       </form>
     </div>
   </main>
-
-  <footer>
-    © 2025 Aureliya Holdings. All rights reserved.
-  </footer>
-
-  <script src="ai_engine.js"></script>
-  <script src="script.js"></script>
-
-  <!-- Redirect after Formspree submit -->
+  <footer>© 2025 Aureliya Holdings. All rights reserved.</footer>
+  <script src="ai_engine.js"></script><script src="script.js"></script>
   <script>
     (function () {
       const form = document.getElementById('contactForm');
-
+      const status = document.getElementById('contactStatus');
+      const button = form.querySelector('.btn-submit');
       const STRIPE_LINK = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
-
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
-
-        // 1) Send to Formspree (emails you the data)
-        const data = new FormData(form);
+        if (!form.reportValidity()) return;
+        button.disabled = true; button.textContent = 'Submitting…'; status.textContent = '';
         try {
-          await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          });
+          const response = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
+          if (!response.ok) throw new Error('Submission failed');
+          status.textContent = 'Your inquiry was sent successfully. You are being redirected to the secure payment page.';
+          status.focus();
+          window.setTimeout(() => { window.location.href = STRIPE_LINK; }, 800);
         } catch (err) {
-          console.error('Form submit failed:', err);
-          // Optional: show a message; we still redirect below
-        }
-
-        // 2) Redirect to payment (with PayPal fallback to Stripe)
-        const method = (form.paymentMethod && form.paymentMethod.value) || 'stripe';
-        if (method === 'stripe') {
-          window.location.href = STRIPE_LINK;
-        } else if (method === 'paypal') {
-          window.location.href = PAYPAL_LINK || STRIPE_LINK;
-        } else {
-          window.location.href = STRIPE_LINK;
+          status.textContent = 'There was a problem sending your inquiry. Please review the form and try again.';
+          status.classList.add('form-error'); status.focus();
+          button.disabled = false; button.textContent = 'Submit Inquiry';
         }
       });
     })();
