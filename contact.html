@@ -22,7 +22,7 @@
       </ul>
     </nav>
   </header>
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
     <h1 style="text-align:center; margin-top:20px;">Contact Us</h1>
     <p style="max-width:700px; margin:20px auto; text-align:center; color:#41414a;">Let’s start planning your dream event. Please provide as many details as possible so our AI can craft a proposal tailored to your needs.</p>
     <section id="company-contact" class="contact-block" style="max-width:700px;margin:24px auto;" aria-labelledby="contact-heading">
@@ -31,49 +31,81 @@
       <p>Email: <a href="mailto:aureliya@aureliyaholdings.com">aureliya@aureliyaholdings.com</a></p>
     </section>
     <div class="form-section">
-      <form id="contactForm" action="https://formspree.io/f/xyzdggln" method="POST">
+      <form id="contactForm" action="https://formspree.io/f/xyzdggln" method="POST" novalidate>
         <input type="hidden" name="_subject" value="Inquiry from Contact Page (Auréliya Holdings)">
-        <div class="sr-only" aria-hidden="true"><label for="contact-company">Leave this field blank</label><input id="contact-company" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
-        <p id="required-note">Fields marked required must be completed.</p>
-        <div class="form-group"><label for="name">Your Name <span class="required-indicator">(required)</span></label><input type="text" id="name" name="name" autocomplete="name" required></div>
-        <div class="form-group"><label for="email">Email <span class="required-indicator">(required)</span></label><input type="email" id="email" name="email" autocomplete="email" inputmode="email" required></div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+        <p id="required-note">Fields marked “required” must be completed.</p>
+        <div class="form-group"><label for="name">Your Name <span class="required-indicator">(required)</span></label><input type="text" id="name" name="name" autocomplete="name" aria-describedby="required-note" required></div>
+        <div class="form-group"><label for="email">Email <span class="required-indicator">(required)</span></label><input type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="required-note" required></div>
         <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
-        <div class="form-group"><label for="eventTypeContact">Event Type <span class="required-indicator">(required)</span></label><select id="eventTypeContact" name="eventType" required><option value="">Select an event type</option><option>Wedding</option><option>Corporate Gala</option><option>Birthday</option><option>VIP Experience</option><option>Other</option></select></div>
+        <div class="form-group"><label for="eventTypeContact">Event Type <span class="required-indicator">(required)</span></label><select id="eventTypeContact" name="eventType" aria-describedby="required-note" required><option value="">Select an event type</option><option>Wedding</option><option>Corporate Gala</option><option>Birthday</option><option>VIP Experience</option><option>Other</option></select></div>
         <div class="form-group"><label for="budgetContact">Estimated Budget (USD)</label><input type="number" id="budgetContact" name="budget" min="0" step="1" inputmode="decimal"></div>
         <div class="form-group"><label for="date">Preferred Date</label><input type="date" id="date" name="date"></div>
         <div class="form-group"><label for="guestsContact">Number of Guests</label><input type="number" id="guestsContact" name="guests" min="1" step="1" inputmode="numeric"></div>
         <div class="form-group"><label for="detailsContact">Tell Us About Your Event</label><textarea id="detailsContact" name="details" rows="5"></textarea></div>
         <h2 style="margin-top:40px;">Secure Deposit</h2>
         <p>Ready to reserve your date? Pay a refundable deposit securely. We accept all major credit cards and digital wallets.</p>
-        <div class="form-group"><label for="paymentAmount">Deposit Amount (USD) <span class="required-indicator">(required)</span></label><input type="number" id="paymentAmount" name="paymentAmount" min="1" step="0.01" inputmode="decimal" required></div>
-        <div class="form-group"><label for="paymentMethod">Payment Method <span class="required-indicator">(required)</span></label><select id="paymentMethod" name="paymentMethod" required><option value="stripe">Credit Card (Stripe)</option></select></div>
+        <div class="form-group"><label for="paymentAmount">Deposit Amount (USD) <span class="required-indicator">(required)</span></label><input type="number" id="paymentAmount" name="paymentAmount" min="1" step="0.01" inputmode="decimal" aria-describedby="required-note" required></div>
+        <div class="form-group"><label for="paymentMethod">Payment Method <span class="required-indicator">(required)</span></label><select id="paymentMethod" name="paymentMethod" aria-describedby="required-note" required><option value="stripe">Credit Card (Stripe)</option></select></div>
         <p id="contactStatus" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
         <button type="submit" class="btn-submit">Submit Inquiry</button>
       </form>
     </div>
   </main>
   <footer>© 2025 Aureliya Holdings. All rights reserved.</footer>
-  <script src="ai_engine.js"></script><script src="script.js"></script>
+  <script src="ai_engine.js"></script>
+  <script src="script.js"></script>
   <script>
     (function () {
       const form = document.getElementById('contactForm');
       const status = document.getElementById('contactStatus');
       const button = form.querySelector('.btn-submit');
       const STRIPE_LINK = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
+
+      function clearFieldErrors() {
+        form.querySelectorAll('[aria-invalid="true"]').forEach((field) => field.removeAttribute('aria-invalid'));
+      }
+
+      function validateForm() {
+        clearFieldErrors();
+        const invalid = Array.from(form.querySelectorAll(':invalid')).filter((field) => !field.hidden);
+        if (!invalid.length) return true;
+        invalid.forEach((field) => field.setAttribute('aria-invalid', 'true'));
+        status.textContent = 'Please complete the required fields before submitting the form.';
+        status.classList.add('form-error');
+        status.setAttribute('role', 'alert');
+        invalid[0].focus();
+        return false;
+      }
+
+      form.addEventListener('input', (event) => {
+        if (event.target.matches('input, select, textarea') && event.target.checkValidity()) event.target.removeAttribute('aria-invalid');
+      });
+
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
-        if (!form.reportValidity()) return;
-        button.disabled = true; button.textContent = 'Submitting…'; status.textContent = '';
+        status.textContent = '';
+        status.classList.remove('form-error');
+        status.setAttribute('role', 'status');
+        if (!validateForm()) return;
+
+        button.disabled = true;
+        button.textContent = 'Submitting…';
+        button.setAttribute('aria-disabled', 'true');
         try {
           const response = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
           if (!response.ok) throw new Error('Submission failed');
           status.textContent = 'Your inquiry was sent successfully. You are being redirected to the secure payment page.';
           status.focus();
-          window.setTimeout(() => { window.location.href = STRIPE_LINK; }, 800);
+          window.setTimeout(() => { window.location.href = STRIPE_LINK; }, 1000);
         } catch (err) {
-          status.textContent = 'There was a problem sending your inquiry. Please review the form and try again.';
-          status.classList.add('form-error'); status.focus();
-          button.disabled = false; button.textContent = 'Submit Inquiry';
+          status.textContent = 'There was a problem sending your inquiry. Please try again. If the problem continues, email aureliya@aureliyaholdings.com.';
+          status.classList.add('form-error');
+          status.setAttribute('role', 'alert');
+          status.focus();
+          button.disabled = false;
+          button.removeAttribute('aria-disabled');
+          button.textContent = 'Submit Inquiry';
         }
       });
     })();
