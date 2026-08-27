@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aureliya Holdings – Elite Event Automation</title>
+  <title>Aureliya Holdings – Elite Event Automation</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header>
-    <nav>
+    <nav aria-label="Primary navigation">
       <div class="logo">Aureliya</div>
-      <div class="menu-toggle">☰</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
+      <button type="button" class="menu-toggle" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">☰</button>
+      <ul id="primary-navigation">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="about.html">About</a></li>
@@ -21,47 +22,35 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <section class="hero">
-      <h1>Elite Event Automation</h1>
-      <p>Experience seamless luxury event planning with AI‑powered automation. Our
-        concierge service transforms your vision into reality while preserving
-        your privacy and delivering unforgettable experiences.</p>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Elite Event Automation</h1>
+      <p>Experience seamless luxury event planning with AI-powered automation. Our concierge service transforms your vision into reality while preserving your privacy and delivering unforgettable experiences.</p>
       <a class="cta" href="services.html">Explore our Services</a>
     </section>
-    <section class="card-grid">
+    <section class="card-grid" aria-label="Featured services">
       <div class="card">
-        <h3>Event Planning</h3>
-        <p>From intimate dinners to grand galas, our planners orchestrate every
-          detail with precision so you can focus on your guests.</p>
-        <a class="btn" href="services.html">Learn More</a>
+        <h2>Event Planning</h2>
+        <p>From intimate dinners to grand galas, our planners orchestrate every detail with precision so you can focus on your guests.</p>
+        <a class="btn" href="services.html#event-planning">Learn more about event planning</a>
       </div>
       <div class="card">
-        <h3>VIP Concierge</h3>
-        <p>Personalised concierge services for high‑profile clients. We emphasise
-          exclusivity and discretion to deliver a seamless experience.</p>
-        <a class="btn" href="services.html">Learn More</a>
+        <h2>VIP Concierge</h2>
+        <p>Personalised concierge services for high-profile clients. We emphasise exclusivity and discretion to deliver a seamless experience.</p>
+        <a class="btn" href="services.html#vip-concierge">Learn more about VIP concierge</a>
       </div>
       <div class="card">
-        <h3>Pop‑Ups &amp; PR</h3>
-        <p>Create buzz with pop‑up events and publicity stunts tailored to your
-          brand. Our AI tools quietly handle logistics behind the scenes.</p>
-        <a class="btn" href="services.html">Learn More</a>
+        <h2>Pop-Ups &amp; PR</h2>
+        <p>Create buzz with pop-up events and publicity stunts tailored to your brand. Our AI tools quietly handle logistics behind the scenes.</p>
+        <a class="btn" href="services.html#popups-pr">Learn more about pop-ups and PR</a>
       </div>
     </section>
-    <section style="margin-top:60px; text-align:center;">
-      <h2>Trust &amp; Privacy</h2>
-      <p style="max-width:700px; margin:20px auto; color:#555;">
-        We believe trust is earned through design quality, upfront disclosure and
-        clear, comprehensive information. Our privacy‑first approach ensures your
-        personal data stays confidential while our AI optimises your event
-        behind the scenes.
-      </p>
+    <section style="margin-top:60px; text-align:center;" aria-labelledby="trust-heading">
+      <h2 id="trust-heading">Trust &amp; Privacy</h2>
+      <p style="max-width:700px; margin:20px auto; color:#41414a;">We believe trust is earned through design quality, upfront disclosure and clear, comprehensive information. Our privacy-first approach ensures your personal data stays confidential while our AI optimises your event behind the scenes.</p>
     </section>
   </main>
-  <footer>
-    © 2025 Aureliya Holdings. All rights reserved.
-  </footer>
+  <footer>© 2025 Aureliya Holdings. All rights reserved.</footer>
   <script src="ai_engine.js"></script>
   <script src="script.js"></script>
 </body>
