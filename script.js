@@ -51,36 +51,77 @@ function initChatWidget() {
   chatWindow.hidden = true;
   chatWindow.innerHTML = `
     <header class="chat-header">
-      <div>
-        <strong id="chatTitle">Aureliya Concierge</strong>
-        <div class="chat-subtitle" id="chatDescription">Private event assistance</div>
+      <div class="chat-header-left">
+        <button type="button" class="chat-nav-button" id="chatBack" aria-label="Go back" hidden>←</button>
+        <div>
+          <strong id="chatTitle">Aureliya Concierge</strong>
+          <div class="chat-subtitle" id="chatDescription">Private event assistance</div>
+        </div>
       </div>
       <button type="button" class="chat-close" id="closeChat" aria-label="Close chat">×</button>
     </header>
-    <div class="chat-messages" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></div>
-    <div class="chat-quick-replies" aria-label="Suggested questions"></div>
-    <form class="chat-input">
-      <label for="chatMessage" class="sr-only">Type your message</label>
-      <input id="chatMessage" type="text" maxlength="500" placeholder="Ask about events, pricing, or booking…" autocomplete="off" />
-      <button type="submit">Send</button>
-    </form>`;
+    <div class="chat-screen" id="chatHomeScreen">
+      <div class="chat-home-intro">
+        <p class="chat-home-kicker">Welcome</p>
+        <h2>How can I help?</h2>
+        <p>Choose a topic below or start a conversation. You can move back and forth without losing your messages.</p>
+      </div>
+      <div class="chat-home-actions" aria-label="Chat topics">
+        <button type="button" class="chat-topic" data-topic="planning"><strong>Planning an event</strong><span>Tell me what you have in mind.</span></button>
+        <button type="button" class="chat-topic" data-topic="pricing"><strong>Pricing & budget</strong><span>Learn how custom pricing works.</span></button>
+        <button type="button" class="chat-topic" data-topic="booking"><strong>Booking & availability</strong><span>See what to include when you reach out.</span></button>
+        <button type="button" class="chat-topic" data-topic="privacy"><strong>Privacy & discretion</strong><span>Learn how Aureliya approaches private requests.</span></button>
+        <button type="button" class="chat-topic" data-topic="conversation"><strong>Open conversation</strong><span>Ask anything about Aureliya.</span></button>
+      </div>
+    </div>
+    <div class="chat-screen" id="chatConversationScreen" hidden>
+      <div class="chat-messages" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></div>
+      <div class="chat-quick-replies" aria-label="Suggested replies"></div>
+      <form class="chat-input">
+        <label for="chatMessage" class="sr-only">Type your message</label>
+        <input id="chatMessage" type="text" maxlength="500" placeholder="Type your message…" autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </div>`;
 
   document.body.appendChild(bubble);
   document.body.appendChild(chatWindow);
 
+  const homeScreen = chatWindow.querySelector('#chatHomeScreen');
+  const conversationScreen = chatWindow.querySelector('#chatConversationScreen');
   const messagesContainer = chatWindow.querySelector('.chat-messages');
   const quickReplies = chatWindow.querySelector('.chat-quick-replies');
   const inputForm = chatWindow.querySelector('.chat-input');
   const input = chatWindow.querySelector('#chatMessage');
   const closeBtn = chatWindow.querySelector('#closeChat');
+  const backBtn = chatWindow.querySelector('#chatBack');
+  const topicButtons = Array.from(chatWindow.querySelectorAll('.chat-topic'));
   let greeted = false;
   let previouslyFocused = null;
+  let currentScreen = 'home';
 
-  const suggestions = [
-    ['What do you plan?', 'We help coordinate private celebrations, luxury experiences, corporate events, VIP occasions, and custom concepts. If your event does not fit a standard category, that is completely fine.'],
-    ['How does pricing work?', 'Pricing is tailored to the scope, guest count, location, timing, and level of coordination involved. The best next step is to share a few details through the Contact page so a custom response can be prepared.'],
-    ['How do I get started?', 'You can begin by sharing your event type, preferred date, approximate guest count, budget range, and any details that matter most to you. Use the Contact page whenever you are ready.']
-  ];
+  const topicOpeners = {
+    planning: {
+      message: 'I’d be happy to help you think through your event. What kind of experience are you planning?',
+      replies: ['Wedding or celebration', 'Corporate event', 'VIP or private experience', 'Something custom']
+    },
+    pricing: {
+      message: 'Aureliya uses custom pricing rather than one fixed package. The proposal depends on scope, location, guest count, timing, and how much coordination you need.',
+      replies: ['What affects the price?', 'Can I give a budget range?', 'Is there a deposit?', 'How do I request a quote?']
+    },
+    booking: {
+      message: 'For booking, the most helpful details are your preferred date, event type, approximate guest count, location, budget range, and any priorities that matter most.',
+      replies: ['How far ahead should I book?', 'What if my date is flexible?', 'How do I contact Aureliya?', 'Can I book a consultation?']
+    },
+    privacy: {
+      message: 'Discretion is part of the Aureliya approach. The goal is to collect only the information needed to understand and coordinate your request.',
+      replies: ['What information do you need?', 'Are requests confidential?', 'Do you use AI?', 'How do I contact a person?']
+    },
+    conversation: {
+      message: 'Of course. Ask me anything about Aureliya, planning, pricing, booking, payments, privacy, or getting started.',
+      replies: ['What does Aureliya do?', 'How do I get started?', 'What events do you handle?', 'How do I reach you?']
+    }
+  };
 
   function getFocusableElements() {
     return Array.from(chatWindow.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href], select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'))
@@ -94,12 +135,7 @@ function initChatWidget() {
     bubble.style.display = 'none';
     bubble.setAttribute('aria-expanded', 'true');
     document.body.classList.add('chat-open');
-    if (!greeted) {
-      appendMessage('Welcome to Aureliya. I can answer a few common questions and help point you in the right direction. What would you like to know?', 'bot');
-      renderQuickReplies();
-      greeted = true;
-    }
-    input.focus();
+    showHome();
   }
 
   function closeChat() {
@@ -112,29 +148,72 @@ function initChatWidget() {
     else bubble.focus();
   }
 
-  function renderQuickReplies() {
+  function showHome() {
+    currentScreen = 'home';
+    homeScreen.hidden = false;
+    conversationScreen.hidden = true;
+    backBtn.hidden = true;
+    chatWindow.querySelector('#chatDescription').textContent = 'Private event assistance';
+    const firstTopic = topicButtons[0];
+    if (firstTopic) firstTopic.focus();
+  }
+
+  function showConversation() {
+    currentScreen = 'conversation';
+    homeScreen.hidden = true;
+    conversationScreen.hidden = false;
+    backBtn.hidden = false;
+    chatWindow.querySelector('#chatDescription').textContent = 'Conversation';
+    input.focus();
+  }
+
+  function startTopic(topic) {
+    showConversation();
+    const opener = topicOpeners[topic] || topicOpeners.conversation;
+    if (!greeted) {
+      appendMessage('Welcome to Aureliya. I can help answer common questions and guide you toward the next step.', 'bot');
+      greeted = true;
+    }
+    appendMessage(opener.message, 'bot');
+    renderQuickReplies(opener.replies);
+  }
+
+  function renderQuickReplies(labels) {
     quickReplies.innerHTML = '';
-    suggestions.forEach(([label, response]) => {
+    labels.forEach(label => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'chat-quick-reply';
       button.textContent = label;
       button.addEventListener('click', () => {
         appendMessage(label, 'user');
-        appendMessage(response, 'bot');
-        quickReplies.innerHTML = '';
+        appendMessage(generateBotResponse(label), 'bot');
+        renderFollowUps(label);
         input.focus();
       });
       quickReplies.appendChild(button);
     });
   }
 
+  function renderFollowUps(lastMessage) {
+    const lower = lastMessage.toLowerCase();
+    let replies = ['How do I get started?', 'How do I contact Aureliya?', 'Tell me more'];
+    if (lower.includes('price') || lower.includes('budget') || lower.includes('quote')) replies = ['What affects the price?', 'Is there a deposit?', 'How do I request a quote?'];
+    if (lower.includes('wedding') || lower.includes('event') || lower.includes('celebration')) replies = ['What details should I send?', 'How far ahead should I book?', 'Can it be customized?'];
+    if (lower.includes('privacy') || lower.includes('confidential')) replies = ['What information do you collect?', 'Do you use AI?', 'How do I contact a person?'];
+    renderQuickReplies(replies);
+  }
+
+  topicButtons.forEach(button => button.addEventListener('click', () => startTopic(button.dataset.topic)));
   bubble.addEventListener('click', openChat);
   closeBtn.addEventListener('click', closeChat);
+  backBtn.addEventListener('click', showHome);
+
   chatWindow.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       event.preventDefault();
-      closeChat();
+      if (currentScreen === 'conversation') showHome();
+      else closeChat();
       return;
     }
     if (event.key === 'Tab') {
@@ -161,8 +240,10 @@ function initChatWidget() {
     }
     appendMessage(text, 'user');
     input.value = '';
-    quickReplies.innerHTML = '';
-    window.setTimeout(() => appendMessage(generateBotResponse(text), 'bot'), 250);
+    window.setTimeout(() => {
+      appendMessage(generateBotResponse(text), 'bot');
+      renderFollowUps(text);
+    }, 180);
   });
 
   function appendMessage(text, type) {
@@ -178,16 +259,31 @@ function initChatWidget() {
 
   function generateBotResponse(userMessage) {
     const lower = userMessage.toLowerCase();
-    if (/\b(hello|hi|hey|good morning|good afternoon|good evening)\b/.test(lower)) return 'Hello. I’m glad you stopped by. I can help with general questions about Aureliya, event planning, pricing, or how to get started.';
-    if (lower.includes('price') || lower.includes('pricing') || lower.includes('cost') || lower.includes('budget') || lower.includes('fee')) return 'Aureliya uses custom pricing because every event is different. Scope, guest count, location, timing, and level of support all affect the proposal. You can share your details on the Contact page for a tailored response.';
-    if (lower.includes('wedding') || lower.includes('birthday') || lower.includes('party') || lower.includes('gala') || lower.includes('corporate') || lower.includes('vip') || lower.includes('event')) return 'Aureliya can support a range of private and professional events, including celebrations, VIP experiences, corporate occasions, and custom concepts. Tell me what you are planning and I can suggest what information to include when you contact us.';
-    if (lower.includes('book') || lower.includes('booking') || lower.includes('reserve') || lower.includes('start') || lower.includes('consult')) return 'The easiest way to begin is through the Contact page. Include your preferred date, event type, estimated guest count, budget range, and any priorities or special details.';
-    if (lower.includes('contact') || lower.includes('email') || lower.includes('reach')) return 'You can use the Contact page to send your event details directly. You can also email aureliya@aureliyaholdings.com.';
-    if (lower.includes('deposit') || lower.includes('payment') || lower.includes('stripe')) return 'Secure payment options are available through the Contact page when applicable. If you have a payment-specific question, include it with your inquiry so it can be reviewed carefully.';
-    if (lower.includes('privacy') || lower.includes('private') || lower.includes('confidential')) return 'Discretion is an important part of the Aureliya approach. The experience is designed to feel personal and private, with only the information needed to coordinate your request collected.';
-    if (lower.includes('who are you') || lower.includes('human') || lower.includes('real person') || lower.includes('bot') || lower.includes('ai')) return 'I’m the website concierge, a simple automated guide for common questions. I do not replace direct communication with Aureliya. For anything personal, detailed, or time-sensitive, please use the Contact page.';
-    if (lower.includes('thank')) return 'You’re very welcome. If you decide to move forward, the Contact page is the best place to share the details of what you have in mind.';
-    return 'I can help with general questions about event types, pricing, booking, payments, privacy, and contacting Aureliya. For anything more specific, please use the Contact page so your request can receive a tailored response.';
+    if (/\b(hello|hi|hey|good morning|good afternoon|good evening)\b/.test(lower)) return 'Hello. I’m glad you stopped by. I can help with planning, pricing, booking, privacy, payments, or how to get started.';
+    if (lower.includes('what does aureliya do') || lower.includes('what do you do')) return 'Aureliya is focused on thoughtful event coordination and private concierge-style support. The goal is to make the experience feel polished, personal, and quietly organized.';
+    if (lower.includes('wedding') || lower.includes('celebration')) return 'Yes. Celebrations can be approached in a highly customized way. It helps to share your preferred date, location, guest count, style, priorities, and budget range.';
+    if (lower.includes('corporate')) return 'Corporate occasions can include private dinners, galas, launches, executive experiences, and custom events. The best starting point is the size, purpose, date, location, and desired atmosphere.';
+    if (lower.includes('vip') || lower.includes('private experience')) return 'Private and VIP experiences can be tailored around discretion, timing, access, hospitality, and the level of hands-on coordination you want.';
+    if (lower.includes('custom')) return 'Custom concepts are welcome. You do not need to fit into a standard event category. Share the outcome or feeling you want to create, and the details can be shaped around that.';
+    if (lower.includes('price') || lower.includes('pricing') || lower.includes('cost') || lower.includes('fee')) return 'Pricing is customized because each request can vary significantly. Location, guest count, timeline, vendors, complexity, and the amount of coordination all affect the final proposal.';
+    if (lower.includes('budget range') || lower.includes('give a budget')) return 'Yes. A budget range is useful because it helps frame the scale and options that make sense without requiring you to know every detail in advance.';
+    if (lower.includes('affect') && lower.includes('price')) return 'The biggest pricing factors are usually event size, location, date, vendor needs, travel, production complexity, and how much planning or concierge support is required.';
+    if (lower.includes('quote')) return 'To request a tailored quote, use the Contact page and include your event type, date, location, guest count, budget range, and anything that is especially important to you.';
+    if (lower.includes('deposit')) return 'A deposit may be used when applicable to reserve or move forward with services. The exact amount and terms should be confirmed as part of your specific proposal.';
+    if (lower.includes('far ahead') || lower.includes('how early')) return 'Earlier is generally better for events with a fixed date or complex vendor needs, but flexible and shorter-timeline requests can still be worth asking about.';
+    if (lower.includes('date is flexible') || lower.includes('flexible date')) return 'A flexible date can create more options. Mention your preferred range or a few possible dates when you contact Aureliya.';
+    if (lower.includes('book') || lower.includes('booking') || lower.includes('reserve') || lower.includes('consult')) return 'The best way to begin is through the Contact page. Share the essentials first; you do not need to have every detail decided.';
+    if (lower.includes('details should i send') || lower.includes('what details')) return 'The most useful details are your event type, preferred date, location, approximate guest count, budget range, priorities, and anything you want the experience to feel like.';
+    if (lower.includes('contact') || lower.includes('email') || lower.includes('reach')) return 'You can use the Contact page to send your details directly. You can also email aureliya@aureliyaholdings.com.';
+    if (lower.includes('confidential') || lower.includes('privacy')) return 'Discretion is an important part of the Aureliya approach. Requests are meant to be handled with care, and only the information needed to understand and coordinate the request should be collected.';
+    if (lower.includes('what information do you collect') || lower.includes('what information do you need')) return 'Usually only practical planning details are needed at first: contact information, event basics, timing, guest count, budget range, and the preferences you choose to share.';
+    if (lower.includes('ai')) return 'The website uses automated assistance for common questions. It is meant to make navigation easier, not replace direct communication for personal or detailed requests.';
+    if (lower.includes('person') || lower.includes('human')) return 'For anything personal, detailed, or time-sensitive, use the Contact page or email aureliya@aureliyaholdings.com so your request can be reviewed directly.';
+    if (lower.includes('payment') || lower.includes('stripe')) return 'Secure payment options may be provided when applicable. Payment details and terms should be confirmed as part of your specific arrangement.';
+    if (lower.includes('get started') || lower.includes('start')) return 'Start with the basics: what you are planning, when and where you want it, approximate guest count, budget range, and what matters most to you. Then send that through the Contact page.';
+    if (lower.includes('tell me more')) return 'Aureliya is intentionally flexible. The idea is to adapt the support around the experience you want rather than force every request into the same package.';
+    if (lower.includes('thank')) return 'You’re very welcome. You can return to the main chat menu anytime with the back arrow, or continue asking questions here.';
+    return 'I can help with planning, pricing, booking, payments, privacy, and getting started. If your question is more specific, tell me a little about what you are trying to plan and I’ll guide you from there.';
   }
 }
 
