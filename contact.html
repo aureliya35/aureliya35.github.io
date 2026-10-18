@@ -43,10 +43,6 @@
         <div class="form-group"><label for="date">Preferred Date</label><input type="date" id="date" name="date"></div>
         <div class="form-group"><label for="guestsContact">Number of Guests</label><input type="number" id="guestsContact" name="guests" min="1" step="1" inputmode="numeric"></div>
         <div class="form-group"><label for="detailsContact">Tell Us About Your Event</label><textarea id="detailsContact" name="details" rows="5"></textarea></div>
-        <h2 style="margin-top:40px;">Secure Deposit</h2>
-        <p>Ready to reserve your date? Pay a refundable deposit securely. We accept all major credit cards and digital wallets.</p>
-        <div class="form-group"><label for="paymentAmount">Deposit Amount (USD) <span class="required-indicator">(required)</span></label><input type="number" id="paymentAmount" name="paymentAmount" min="1" step="0.01" inputmode="decimal" aria-describedby="required-note" required></div>
-        <div class="form-group"><label for="paymentMethod">Payment Method <span class="required-indicator">(required)</span></label><select id="paymentMethod" name="paymentMethod" aria-describedby="required-note" required><option value="stripe">Credit Card (Stripe)</option></select></div>
         <p id="contactStatus" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
         <button type="submit" class="btn-submit">Submit Inquiry</button>
       </form>
@@ -60,7 +56,6 @@
       const form = document.getElementById('contactForm');
       const status = document.getElementById('contactStatus');
       const button = form.querySelector('.btn-submit');
-      const STRIPE_LINK = 'https://buy.stripe.com/8x26oH8lB0iF0s0cgJes001';
 
       function clearFieldErrors() {
         form.querySelectorAll('[aria-invalid="true"]').forEach((field) => field.removeAttribute('aria-invalid'));
@@ -84,6 +79,7 @@
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
+        if (button.disabled) return;
         status.textContent = '';
         status.classList.remove('form-error');
         status.setAttribute('role', 'status');
@@ -95,9 +91,9 @@
         try {
           const response = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
           if (!response.ok) throw new Error('Submission failed');
-          status.textContent = 'Your inquiry was sent successfully. You are being redirected to the secure payment page.';
+          status.textContent = 'Your inquiry was sent successfully. Thank you for reaching out.';
+          button.textContent = 'Inquiry Sent';
           status.focus();
-          window.setTimeout(() => { window.location.href = STRIPE_LINK; }, 1000);
         } catch (err) {
           status.textContent = 'There was a problem sending your inquiry. Please try again. If the problem continues, email aureliya@aureliyaholdings.com.';
           status.classList.add('form-error');
