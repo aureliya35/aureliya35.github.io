@@ -36,7 +36,7 @@ function initChatWidget() {
   bubble.type = 'button';
   bubble.className = 'chat-bubble';
   bubble.innerHTML = '<span aria-hidden="true">✦</span> Chat';
-  bubble.setAttribute('aria-label', 'Open Aureliya concierge chat');
+  bubble.setAttribute('aria-label', 'Open Aureliya event planning chat');
   bubble.setAttribute('aria-haspopup', 'dialog');
   bubble.setAttribute('aria-expanded', 'false');
   bubble.setAttribute('aria-controls', 'chatWindow');
@@ -54,8 +54,8 @@ function initChatWidget() {
       <div class="chat-header-left">
         <button type="button" class="chat-nav-button" id="chatBack" aria-label="Go back" hidden>←</button>
         <div>
-          <strong id="chatTitle">Aureliya Concierge</strong>
-          <div class="chat-subtitle" id="chatDescription">Private event assistance</div>
+          <strong id="chatTitle">Aureliya Planning Guide</strong>
+          <div class="chat-subtitle" id="chatDescription">Remote planning information</div>
         </div>
       </div>
       <button type="button" class="chat-close" id="closeChat" aria-label="Close chat">×</button>
@@ -64,14 +64,14 @@ function initChatWidget() {
       <div class="chat-home-intro">
         <p class="chat-home-kicker">Welcome</p>
         <h2>How can I help?</h2>
-        <p>Choose a topic below or start a conversation. You can move back and forth without losing your messages.</p>
+        <p>Get preset answers about remote planning for Boston events. For service details or availability, contact Aureliya directly.</p>
       </div>
       <div class="chat-home-actions" aria-label="Chat topics">
-        <button type="button" class="chat-topic" data-topic="planning"><strong>Planning an event</strong><span>Tell me what you have in mind.</span></button>
-        <button type="button" class="chat-topic" data-topic="pricing"><strong>Pricing & budget</strong><span>Learn how custom pricing works.</span></button>
-        <button type="button" class="chat-topic" data-topic="booking"><strong>Booking & availability</strong><span>See what to include when you reach out.</span></button>
-        <button type="button" class="chat-topic" data-topic="privacy"><strong>Privacy & discretion</strong><span>Learn how Aureliya approaches private requests.</span></button>
-        <button type="button" class="chat-topic" data-topic="conversation"><strong>Open conversation</strong><span>Ask anything about Aureliya.</span></button>
+        <button type="button" class="chat-topic" data-topic="planning"><strong>Planning an event</strong><span>Private celebrations and business events.</span></button>
+        <button type="button" class="chat-topic" data-topic="budget"><strong>Planning your budget</strong><span>Share your budget and priorities.</span></button>
+        <button type="button" class="chat-topic" data-topic="scope"><strong>Remote planning scope</strong><span>Understand what remote support covers.</span></button>
+        <button type="button" class="chat-topic" data-topic="inquiry"><strong>Send an inquiry</strong><span>See what to include when you reach out.</span></button>
+        <button type="button" class="chat-topic" data-topic="conversation"><strong>Common questions</strong><span>Find service and contact information.</span></button>
       </div>
     </div>
     <div class="chat-screen" id="chatConversationScreen" hidden>
@@ -102,24 +102,24 @@ function initChatWidget() {
 
   const topicOpeners = {
     planning: {
-      message: 'I’d be happy to help you think through your event. What kind of experience are you planning?',
-      replies: ['Wedding or celebration', 'Corporate event', 'VIP or private experience', 'Something custom']
+      message: 'Aureliya offers remote planning support for private celebrations and business events in Boston, Massachusetts. Support includes budgets, venue and vendor research, schedules, and planning coordination.',
+      replies: ['Private celebration', 'Business event', 'What does remote planning include?', 'How do I get started?']
     },
-    pricing: {
-      message: 'Aureliya uses custom pricing rather than one fixed package. The proposal depends on scope, location, guest count, timing, and how much coordination you need.',
-      replies: ['What affects the price?', 'Can I give a budget range?', 'Is there a deposit?', 'How do I request a quote?']
+    budget: {
+      message: 'Share an estimated event budget or range and your priorities in your inquiry. Contact Aureliya directly to discuss service scope and fees; this chat cannot confirm prices.',
+      replies: ['Can I give a budget range?', 'What details should I send?', 'How do I contact Aureliya?']
     },
-    booking: {
-      message: 'For booking, the most helpful details are your preferred date, event type, approximate guest count, location, budget range, and any priorities that matter most.',
-      replies: ['How far ahead should I book?', 'What if my date is flexible?', 'How do I contact Aureliya?', 'Can I book a consultation?']
+    scope: {
+      message: 'All planning support is provided remotely. Aureliya does not attend events onsite. Onsite staffing and event-day services require separately agreed local coverage.',
+      replies: ['What does remote planning include?', 'Do you attend onsite?', 'How do I contact Aureliya?']
     },
-    privacy: {
-      message: 'Discretion is part of the Aureliya approach. The goal is to collect only the information needed to understand and coordinate your request.',
-      replies: ['What information do you need?', 'Are requests confidential?', 'Do you use AI?', 'How do I contact a person?']
+    inquiry: {
+      message: 'Use the Contact page to share your event type, preferred date, location, guest count, budget range, and the planning help you need. An inquiry does not confirm a booking.',
+      replies: ['What details should I send?', 'What if my date is flexible?', 'How do I contact Aureliya?']
     },
     conversation: {
-      message: 'Of course. Ask me anything about Aureliya, planning, pricing, booking, payments, privacy, or getting started.',
-      replies: ['What does Aureliya do?', 'How do I get started?', 'What events do you handle?', 'How do I reach you?']
+      message: 'I can share preset information about remote event planning and how to contact Aureliya. I cannot confirm availability, prices, bookings, or local coverage.',
+      replies: ['What does Aureliya do?', 'How do I get started?', 'Do you attend onsite?', 'Do you use AI?']
     }
   };
 
@@ -153,7 +153,7 @@ function initChatWidget() {
     homeScreen.hidden = false;
     conversationScreen.hidden = true;
     backBtn.hidden = true;
-    chatWindow.querySelector('#chatDescription').textContent = 'Private event assistance';
+    chatWindow.querySelector('#chatDescription').textContent = 'Remote planning information';
     const firstTopic = topicButtons[0];
     if (firstTopic) firstTopic.focus();
   }
@@ -171,7 +171,7 @@ function initChatWidget() {
     showConversation();
     const opener = topicOpeners[topic] || topicOpeners.conversation;
     if (!greeted) {
-      appendMessage('Welcome to Aureliya. I can help answer common questions and guide you toward the next step.', 'bot');
+      appendMessage('Welcome to Aureliya. This automated guide answers common questions about remote event planning.', 'bot');
       greeted = true;
     }
     appendMessage(opener.message, 'bot');
@@ -197,10 +197,10 @@ function initChatWidget() {
 
   function renderFollowUps(lastMessage) {
     const lower = lastMessage.toLowerCase();
-    let replies = ['How do I get started?', 'How do I contact Aureliya?', 'Tell me more'];
-    if (lower.includes('price') || lower.includes('budget') || lower.includes('quote')) replies = ['What affects the price?', 'Is there a deposit?', 'How do I request a quote?'];
-    if (lower.includes('wedding') || lower.includes('event') || lower.includes('celebration')) replies = ['What details should I send?', 'How far ahead should I book?', 'Can it be customized?'];
-    if (lower.includes('privacy') || lower.includes('confidential')) replies = ['What information do you collect?', 'Do you use AI?', 'How do I contact a person?'];
+    let replies = ['How do I get started?', 'What does remote planning include?', 'How do I contact Aureliya?'];
+    if (/price|pricing|budget|quote|fee|deposit|payment/.test(lower)) replies = ['Can I give a budget range?', 'What details should I send?', 'How do I contact Aureliya?'];
+    else if (/event|celebration|business|corporate/.test(lower)) replies = ['What details should I send?', 'Do you attend onsite?', 'How do I contact Aureliya?'];
+    else if (/privacy|confidential|information/.test(lower)) replies = ['What information do you need?', 'Do you use AI?', 'How do I contact a person?'];
     renderQuickReplies(replies);
   }
 
@@ -259,32 +259,27 @@ function initChatWidget() {
 
   function generateBotResponse(userMessage) {
     const lower = userMessage.toLowerCase();
-    if (/\b(hello|hi|hey|good morning|good afternoon|good evening)\b/.test(lower)) return 'Hello. I’m glad you stopped by. I can help with planning, pricing, booking, privacy, payments, or how to get started.';
-    if (lower.includes('what does aureliya do') || lower.includes('what do you do')) return 'Aureliya is focused on thoughtful event coordination and private concierge-style support. The goal is to make the experience feel polished, personal, and quietly organized.';
-    if (lower.includes('wedding') || lower.includes('celebration')) return 'Yes. Celebrations can be approached in a highly customized way. It helps to share your preferred date, location, guest count, style, priorities, and budget range.';
-    if (lower.includes('corporate')) return 'Corporate occasions can include private dinners, galas, launches, executive experiences, and custom events. The best starting point is the size, purpose, date, location, and desired atmosphere.';
-    if (lower.includes('vip') || lower.includes('private experience')) return 'Private and VIP experiences can be tailored around discretion, timing, access, hospitality, and the level of hands-on coordination you want.';
-    if (lower.includes('custom')) return 'Custom concepts are welcome. You do not need to fit into a standard event category. Share the outcome or feeling you want to create, and the details can be shaped around that.';
-    if (lower.includes('price') || lower.includes('pricing') || lower.includes('cost') || lower.includes('fee')) return 'Pricing is customized because each request can vary significantly. Location, guest count, timeline, vendors, complexity, and the amount of coordination all affect the final proposal.';
-    if (lower.includes('budget range') || lower.includes('give a budget')) return 'Yes. A budget range is useful because it helps frame the scale and options that make sense without requiring you to know every detail in advance.';
-    if (lower.includes('affect') && lower.includes('price')) return 'The biggest pricing factors are usually event size, location, date, vendor needs, travel, production complexity, and how much planning or concierge support is required.';
-    if (lower.includes('quote')) return 'To request a tailored quote, use the Contact page and include your event type, date, location, guest count, budget range, and anything that is especially important to you.';
-    if (lower.includes('deposit')) return 'A deposit may be used when applicable to reserve or move forward with services. The exact amount and terms should be confirmed as part of your specific proposal.';
-    if (lower.includes('far ahead') || lower.includes('how early')) return 'Earlier is generally better for events with a fixed date or complex vendor needs, but flexible and shorter-timeline requests can still be worth asking about.';
-    if (lower.includes('date is flexible') || lower.includes('flexible date')) return 'A flexible date can create more options. Mention your preferred range or a few possible dates when you contact Aureliya.';
-    if (lower.includes('book') || lower.includes('booking') || lower.includes('reserve') || lower.includes('consult')) return 'The best way to begin is through the Contact page. Share the essentials first; you do not need to have every detail decided.';
-    if (lower.includes('details should i send') || lower.includes('what details')) return 'The most useful details are your event type, preferred date, location, approximate guest count, budget range, priorities, and anything you want the experience to feel like.';
-    if (lower.includes('contact') || lower.includes('email') || lower.includes('reach')) return 'You can use the Contact page to send your details directly. You can also email aureliya@aureliyaholdings.com.';
-    if (lower.includes('confidential') || lower.includes('privacy')) return 'Discretion is an important part of the Aureliya approach. Requests are meant to be handled with care, and only the information needed to understand and coordinate the request should be collected.';
-    if (lower.includes('what information do you collect') || lower.includes('what information do you need')) return 'Usually only practical planning details are needed at first: contact information, event basics, timing, guest count, budget range, and the preferences you choose to share.';
-    if (lower.includes('ai')) return 'The website uses automated assistance for common questions. It is meant to make navigation easier, not replace direct communication for personal or detailed requests.';
-    if (lower.includes('person') || lower.includes('human')) return 'For anything personal, detailed, or time-sensitive, use the Contact page or email aureliya@aureliyaholdings.com so your request can be reviewed directly.';
-    if (lower.includes('payment') || lower.includes('stripe')) return 'Secure payment options may be provided when applicable. Payment details and terms should be confirmed as part of your specific arrangement.';
-    if (lower.includes('get started') || lower.includes('start')) return 'Start with the basics: what you are planning, when and where you want it, approximate guest count, budget range, and what matters most to you. Then send that through the Contact page.';
-    if (lower.includes('tell me more')) return 'Aureliya is intentionally flexible. The idea is to adapt the support around the experience you want rather than force every request into the same package.';
-    if (lower.includes('thank')) return 'You’re very welcome. You can return to the main chat menu anytime with the back arrow, or continue asking questions here.';
-    return 'I can help with planning, pricing, booking, payments, privacy, and getting started. If your question is more specific, tell me a little about what you are trying to plan and I’ll guide you from there.';
+    if (/on[ -]?site|in[ -]?person|event[ -]?day|local coverage|staffing/.test(lower)) return 'All planning support is provided remotely. Aureliya does not attend events onsite. Onsite staffing and event-day services require separately agreed local coverage. This chat cannot confirm that coverage has been arranged.';
+    if (/\b(deposit|payment|stripe|paypal)\b/.test(lower)) return 'This chat cannot confirm payment or deposit terms. Contact Aureliya directly with questions about any proposed service. The inquiry form does not take payment.';
+    if (/\b(price|prices|pricing|cost|costs|fee|fees|quote)\b/.test(lower)) return 'Please contact Aureliya to discuss the scope and fees for your request. This chat cannot confirm prices. Include your event type, date, location, guest count, and budget range in your inquiry.';
+    if (lower.includes('budget')) return 'An estimated event budget or range is helpful. Include your guest count and priorities so you can discuss the planning support you need. Service scope and fees must be confirmed directly with Aureliya.';
+    if (lower.includes('what details') || lower.includes('details should i send') || lower.includes('what information')) return 'Share your name, email, event type, preferred date, location, approximate guest count, budget range, and the planning help you need. You can send these through the Contact page.';
+    if (/\b(contact|email|reach|person|human)\b/.test(lower)) return 'Use the Contact page to send an event inquiry, or email aureliya@aureliyaholdings.com.';
+    if (lower.includes('confidential') || lower.includes('privacy')) return 'Please share only the contact and event details needed for your inquiry. Avoid sending payment details or sensitive guest information. Contact Aureliya directly with privacy questions; this guide cannot give confidentiality guarantees.';
+    if (/\b(ai|automated|automation|bot)\b/.test(lower)) return 'This chat uses preset automated answers to common questions. It does not generate event proposals or confirm availability, prices, bookings, or local coverage. Use the Contact page for a direct inquiry.';
+    if (/\b(vip|concierge)\b/.test(lower)) return 'The services described here are remote planning for private celebrations and business events in Boston. For a different request, contact Aureliya to check whether it fits the available scope.';
+    if (lower.includes('date is flexible') || lower.includes('flexible date')) return 'Include your preferred date range or a few possible dates in your inquiry. Availability must be confirmed directly with Aureliya.';
+    if (/\b(book|booking|reserve|availability|available|consultation)\b/.test(lower) || lower.includes('far ahead') || lower.includes('how early')) return 'Send an inquiry through the Contact page with your preferred date and event details. Aureliya must confirm availability and service scope directly. This chat and the inquiry form do not confirm bookings.';
+    if (lower.includes('get started') || lower.includes('start')) return 'Start with your event type, preferred date, location, approximate guest count, budget range, and the planning help you need. Send these through the Contact page or email aureliya@aureliyaholdings.com.';
+    if (/\b(wedding|birthday|celebration|celebrations|private)\b/.test(lower)) return 'Remote planning for private celebrations can include defining priorities, comparing venue and vendor options, organizing a budget, and creating a schedule. Share your celebration details through the Contact page to discuss the scope.';
+    if (/\b(corporate|business)\b/.test(lower)) return 'Remote planning for business events focuses on the event purpose, guests, budget, venue and vendor research, planning timelines, and coordination before the event. Share your details through the Contact page.';
+    if (lower.includes('custom')) return 'Describe the planning help you need in your inquiry. Confirm the service scope directly with Aureliya before making arrangements.';
+    if (lower.includes('what does aureliya do') || lower.includes('what do you do') || lower.includes('remote') || lower.includes('planning') || lower.includes('what events') || lower.includes('tell me more')) return 'Aureliya offers remote planning support for private celebrations and business events in Boston, Massachusetts. Support includes budgets, venue and vendor research, schedules, and planning coordination.';
+    if (/\b(hello|hi|hey|good morning|good afternoon|good evening)\b/.test(lower)) return 'Hello. I can share information about remote event planning for Boston and help you find the Contact page.';
+    if (lower.includes('thank')) return 'You’re welcome. You can return to the main chat menu with the back arrow or ask another question.';
+    return 'I can share preset information about remote planning for private celebrations and business events in Boston. For questions about your specific event, use the Contact page or email aureliya@aureliyaholdings.com.';
   }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -351,3 +346,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!window.location.pathname.endsWith('dashboard.html')) initChatWidget();
 });
+
