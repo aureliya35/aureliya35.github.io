@@ -172,6 +172,59 @@ footer {
 }
 .card p { margin-bottom: 20px; color: #41414a; }
 
+/* Planning detail stays within the existing service cards and separate guide. */
+.service-details { padding-left: 20px; margin: 0 0 24px; color: #41414a; }
+.service-details li + li { margin-top: 12px; }
+.planning-resource-link { text-align: center; margin: 28px auto 0; }
+.planning-resource-link a,
+.planning-guide a:not(.cta) { color: #2727a8; }
+.planning-guide { max-width: 920px; }
+.planning-guide .hero { padding: clamp(36px, 6vw, 64px) 24px; }
+.planning-guide .hero h1 { font-size: clamp(2rem, 5vw, 2.75rem); }
+.planning-guide .hero p { margin-bottom: 0; }
+.guide-kicker { font-weight: 600; color: #2727a8; margin: 0 0 12px; }
+.guide-contents { margin: 28px 0; }
+.guide-contents ul { display: flex; flex-wrap: wrap; gap: 4px 24px; list-style: none; padding: 0; }
+.guide-contents a { display: inline-block; min-height: 44px; padding-block: 10px; }
+.guide-section { margin-top: 36px; scroll-margin-top: 110px; }
+.guide-section h2 { font-size: 1.65rem; margin: 0 0 12px; }
+.guide-section h3 { font-size: 1.15rem; margin: 0 0 8px; color: #2727a8; }
+.guide-section p,
+.guide-section li { color: #41414a; }
+.guide-section ul { padding-left: 22px; }
+.guide-section li + li { margin-top: 10px; }
+.guide-timeline { list-style: none; padding: 0; margin: 24px 0 0; }
+.guide-timeline > li { margin: 0 0 18px; padding: 22px 24px; background: #fff; border: 1px solid #dedeee; border-radius: 10px; }
+.guide-timeline ul { margin-bottom: 0; }
+.guide-budget { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+.guide-budget dt { font-weight: 600; color: #2c2e4a; }
+.guide-budget dd { margin: 4px 0 12px; color: #41414a; }
+.guide-note { padding: 20px 24px; border-left: 4px solid #3333cc; background: #f0f0ff; }
+.guide-inquiry { background: #f0f0ff; border-radius: 10px; padding: 28px; margin-bottom: 32px; }
+@media (max-width: 600px) {
+  .guide-budget { grid-template-columns: 1fr; gap: 0; }
+  .guide-timeline > li { padding: 20px; }
+  .guide-note, .guide-inquiry { padding: 20px; }
+}
+@media print {
+  body:has(.planning-guide) { background: #fff; color: #000; }
+  body:has(.planning-guide) > header,
+  body:has(.planning-guide) > footer,
+  body:has(.planning-guide) .skip-link,
+  body:has(.planning-guide) .chat-bubble,
+  body:has(.planning-guide) .chat-window,
+  .planning-guide .guide-contents { display: none !important; }
+  .planning-guide { max-width: none; padding: 0; }
+  .planning-guide .hero { padding: 0; background: none; text-align: left; }
+  .planning-guide .hero h1 { font-size: 24pt; }
+  .planning-guide .hero p { max-width: none; }
+  .guide-section { margin-top: 24px; }
+  .guide-section h2, .guide-section h3 { break-after: avoid; }
+  .guide-timeline > li, .guide-budget > div, .guide-note, .guide-inquiry { break-inside: avoid; }
+  .guide-inquiry .cta { color: #000; background: none; padding: 0; text-decoration: underline; }
+  .guide-inquiry .cta::after { content: " (www.aureliyaholdings.com/contact.html)"; }
+}
+
 .form-section { max-width: 700px; margin: 0 auto; }
 .form-group {
   display: flex;
@@ -500,3 +553,4 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+
